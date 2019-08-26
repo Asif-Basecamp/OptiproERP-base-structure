@@ -1,8 +1,39 @@
-.no-side-bar{
-  & .navbar > .container-fluid{
-    max-width: 100%;
+//Layout
+.navbar-nav.navbar-right{
+  ::ng-deep{
+    ul.k-menu{
+      padding: 0;
+      background-color: transparent;
+    }
+    .k-menu.k-menu-horizontal > .k-item{
+      padding: 0 10px;
+      @media screen and (max-width:991px){
+        padding: 0;
+      }  
+    }
+    .k-menu.k-menu-horizontal > .k-item > .k-link {
+      padding: 0;
+    }
+    .k-menu-expand-arrow{
+      display: none;
+    }
+    .nav-link {
+        display: flex;
+        align-items: stretch;
+        padding: 5px 0;
+        ::ng-deep{
+          .user-name{
+            display: flex;
+            align-items: center;
+            @media screen and (max-width:991px){
+              display: none;
+            } 
+          }
+        }
+    }
   }
 }
+
 .navbar-dropdown{
   font-size: 0.9rem;
   margin-top: 0;
@@ -37,6 +68,9 @@
     display: block;
     fill:#fff;
     transition: transform 100ms ease-in-out;
+    @media screen and (max-width:991px){
+      display: none;
+    }  
   }
   & .user-avtar{
     max-width: 30px;
@@ -61,13 +95,39 @@
   & .user-name{
     margin:0 0.5rem;
     color:#FFF;
+     
   }
 }
 .open,.show{
   & .dropdown-toggle{
     & .icon-caret{
-      transform: rotateX(180deg);      
+      transform: rotateX(180deg);          
     }
+  }
+}
+.navbar-toggle-btn{
+  background: transparent;
+  border: none;
+  color: #fff;
+  height: 25px;
+  @media screen and (max-width:991px){
+    margin-left: -5px;
+  }
+  ::ng-deep{
+    & > svg{
+      fill:#fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &.menu-icon-mobile{
+        display: none;
+      }
+    }   
+  }  
+  &:hover, &:active, &:focus{
+    background-color: rgba(0, 0, 0, 0.06);
+    border-radius: 3px;
+    outline: none;
   }
 }
 @media (min-width: 992px) {
@@ -113,3 +173,4 @@
   -webkit-animation-name: slideIn;
   animation-name: slideIn;
 }
+

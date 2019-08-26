@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -12,6 +13,7 @@ import { LoginComponent } from './login/login.component';
     CommonModule,
     AuthenticationRoutingModule,
     DropDownsModule,
+    FormsModule,
     FlexLayoutModule
   ]
 })
