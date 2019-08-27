@@ -82,7 +82,7 @@ app-sidebar.toggle  {
     margin: 0;
   }
   app-sidebar.toggle + .content-area > .content .layout-mode > &{
-    left: 135px;
+    left: 120px;
   }
   @media screen and (max-width:991px){
     left:50px; 
@@ -155,6 +155,9 @@ button.btn.btn-icon {
 }
 
 //Form control
+.form-control-sm {
+  height: 28px;
+}
 .custom-checkbox {
     position: relative; // take it out of document flow
     cursor: pointer;
@@ -251,6 +254,18 @@ body .k-popup.k-menu-popup {
 body .k-widget.form-control-sm .k-input {
   padding: 0.25rem 0.5rem;
   height: auto;
+}
+.k-textbox, .k-input.k-textbox {
+  height: 28px;
+}
+.k-filtercell > span, .k-filtercell .k-filtercell-wrapper {
+  align-items: center;
+}
+.k-filtercell .k-filtercell-wrapper > .k-textbox{
+  flex: 1 1 100%;
+}
+.k-filtercell .k-filtercell-operator{
+
 }
 // Kendo grid
 
