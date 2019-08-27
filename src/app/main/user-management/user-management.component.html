@@ -50,12 +50,12 @@
 
                             <!-- checkbox -->
                             <label class="custom-checkbox mb-0 mr-2">
-                                <input type="checkbox" [(ngModel)]="isColumnFilter">
+                                <input type="checkbox" [(ngModel)]="isColumnFilter" [ngModelOptions]="{standalone: true}">
                                 <span class="checkbox"></span>
                                 <span>Enable filter</span>
                             </label>
                             <label class="custom-checkbox mb-0">
-                                <input type="checkbox" [(ngModel)]="isColumnGroup">
+                                <input type="checkbox" [(ngModel)]="isColumnGroup" [ngModelOptions]="{standalone: true}">
                                 <span class="checkbox"></span>
                                 <span>Enable grouping</span>
                             </label>
@@ -114,7 +114,7 @@
                     </div>
                     <form>
                         <div class="row">
-                            <div class="col-sm-5 col-md-4 col-lg-3 col-lg-4 col-xl-3">
+                            <div class="col-sm-5 col-md-4 col-lg-4 col-xl-3">
                                 <div class="row">
                                     <div class="form-group col-md-12 mb-2">
                                         <label class="mb-0" for="user_id">User Id<span class="text-danger">*</span></label>
@@ -138,11 +138,11 @@
                                 <div class="row">
                                     <div class="form-group col-md-12 mb-2">
                                         <label class="mb-0" for="user_group">User Group<span class="text-danger">*</span></label>
-                                        <kendo-dropdownlist class="w-100" id="user_group" name="user_group" class="form-control-sm form-control"></kendo-dropdownlist>
+                                        <kendo-dropdownlist id="user_group" name="user_group" class="form-control-sm form-control w-100"></kendo-dropdownlist>
                                     </div>
                                     <div class="form-group col-md-12 mb-2">
                                         <label class="mb-0" for="mapped_user_id">Mapped SAP B1 User<span class="text-danger">*</span></label>
-                                        <kendo-dropdownlist class="w-100" id="mapped_user_id"  name="mapped_user_id" class="form-control-sm form-control"></kendo-dropdownlist>
+                                        <kendo-dropdownlist id="mapped_user_id"  name="mapped_user_id" class="form-control-sm form-control w-100"></kendo-dropdownlist>
                                     </div>
                                     <div class="form-group col-md-12 mb-2">
                                         <label class="mb-0" for="mapped_user_password" >Mapped SAP B1 User Pwd<span class="text-danger">*</span></label>
@@ -150,7 +150,7 @@
                                     </div>
                                     <div class="form-group col-md-12 mb-2">
                                         <label class="mb-0" for="tenant">Tenant</label>
-                                        <kendo-dropdownlist class="w-100" id="tenant"  name="tenant" class="form-control-sm form-control"></kendo-dropdownlist>
+                                        <kendo-dropdownlist id="tenant"  name="tenant" class="form-control-sm form-control w-100"></kendo-dropdownlist>
                                     </div>
                                     <div class="form-group col-md-12 mb-2">
                                         <!-- <label class="custom-checkbox mb-0">
@@ -175,8 +175,8 @@
                             <div class="section-heading mb-2">
                                 <h5 class="m-0">Company</h5>
                             </div>
-                            <kendo-grid [kendoGridBinding]="gridData" [resizable]="true" [sortable]="true" class="custom-height-grid kendo-responsive-grid" [filterable]=isColumnFilter
-                                [groupable]=isColumnGroup [columnMenu]="false">
+                            <kendo-grid [kendoGridBinding]="gridData" [resizable]="true" [sortable]="true" class="custom-height-grid" [filterable]=isColumnFilter
+                                [groupable]=isColumnGroup [columnMenu]="false" [selectable]="{ checkboxOnly: true, mode: 'multiple' }">
                                 <!-- [pageSize]="10" 
                                 [pageable]="{
                                     buttonCount: paginationButtonCount,
@@ -193,12 +193,12 @@
 
                                         <!-- checkbox -->
                                         <label class="custom-checkbox mb-0 mr-2">
-                                            <input type="checkbox" [(ngModel)]="isColumnFilter">
+                                            <input type="checkbox" [(ngModel)]="isColumnFilter" [ngModelOptions]="{standalone: true}">
                                             <span class="checkbox"></span>
                                             <span>Enable filter</span>
                                         </label>
                                         <label class="custom-checkbox mb-0">
-                                            <input type="checkbox" [(ngModel)]="isColumnGroup">
+                                            <input type="checkbox" [(ngModel)]="isColumnGroup" [ngModelOptions]="{standalone: true}">
                                             <span class="checkbox"></span>
                                             <span>Enable grouping</span>
                                         </label>
@@ -212,9 +212,9 @@
                                 </ng-template>
 
                                 <!-- columns for mid-size devices -->
+                                <kendo-grid-checkbox-column  [width]="38" class="text-center" headerClass="text-center"></kendo-grid-checkbox-column>
                                 <kendo-grid-column field="ProductName" title="Database"></kendo-grid-column>
                                 <kendo-grid-column field="Category.Description" title="Company"></kendo-grid-column>
-
                                 <!-- xlsx template start -->
                                 <kendo-grid-excel fileName="User-management.xlsx"></kendo-grid-excel>
                                 <!-- xlsx template end -->
@@ -227,33 +227,76 @@
                             <form>
                                 <div class="form-group mb-2">
                                     <label class="mb-0" for="user_type">User Type<span class="text-danger">*</span></label>
-                                    <kendo-dropdownlist class="w-100" id="user_type" name="user_type" class="form-control-sm form-control"></kendo-dropdownlist>
+                                    <kendo-dropdownlist id="user_type" name="user_type" class="form-control-sm form-control w-100"></kendo-dropdownlist>
                                 </div>
                                 <div class="form-group mb-2">
                                     <label class="mb-0" for="products">Products<span class="text-danger">*</span></label>
-                                    <kendo-dropdownlist class="w-100" id="products"  name="products" class="form-control-sm form-control"></kendo-dropdownlist>
+                                    <div class="form-grid-wrapper">
+                                        <kendo-grid [kendoGridBinding]="gridData" [resizable]="true" [sortable]="true" class="custom-height-grid" [filterable]=false
+                                            [groupable]=false [columnMenu]="false" [selectable]="{ checkboxOnly: true, mode: 'multiple' }">
+                                            <!-- [pageSize]="10" 
+                                            [pageable]="{
+                                                buttonCount: paginationButtonCount,
+                                                info: paginationInfo,
+                                                type: paginationType,
+                                                pageSizes: paginationPageSizes,
+                                                previousNext: paginationInfoPreviousNext
+                                            }"> -->
+                                            <!-- grid template start -->
+                                            
+            
+                                            <!-- columns for mid-size devices -->
+                                            <kendo-grid-checkbox-column  [width]="38" class="text-center" headerClass="text-center"></kendo-grid-checkbox-column>
+                                            <kendo-grid-column field="ProductName" title="Product Name"></kendo-grid-column>
+                                            <kendo-grid-column field="Category.Description" title="Description"></kendo-grid-column>
+                                        </kendo-grid>
+                                    </div>
                                 </div>
                                 <div class="form-group mb-2">
-                                    <label class="mb-0" for="employee_id" >Employee ID<span class="text-danger">*</span></label>
-                                    <input type="password" name="employee_id" class="form-control form-control-sm" id="employee_id">
+                                    <label class="mb-0" for="bussiness_partner_code" >Bussiness Partner Code<span class="text-danger">*</span></label>
+                                    <kendo-dropdownlist name="bussiness_partner_code" class="form-control form-control-sm" id="bussiness_partner_code"></kendo-dropdownlist>
                                 </div>
-                                <div class="form-group mb-2">
+                                <div class="form-group mb-0">
                                     <label class="mb-0" for="tenant">Warehouse &amp; Work Center<span class="text-danger">*</span></label>
-                                    <kendo-dropdownlist class="w-100" id="tenant"  name="tenant" class="form-control-sm form-control"></kendo-dropdownlist>
+                                    <div class="treeview-wrapper">
+                                        <kendo-treeview
+                                            [nodes]="treeData"
+                                            [children]="children"
+                                            [hasChildren]="hasChildren"
+                                            textField="text"
+                                            [isExpanded]="isExpanded"
+                                            (collapse)="handleCollapse($event)"
+                                            (expand)="handleExpand($event)"        
+                                            [kendoTreeViewCheckable]="checkableSettings"
+                                            [(checkedKeys)]="checkedKeys"
+                                        ></kendo-treeview>
+                                    </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- user detail save/cancel option -->
             <div class="sticky-bottom-toolbar d-flex align-items-center justify-content-start border-top pt-2">                
+                <button class="btn btn-primary btn-sm d-flex align-items-center mr-2" type="button"> 
+                    <svg viewBox="0 0 55.25 55.25" class="icon mr-2">
+                        <use xlink:href="#edit"></use>
+                    </svg> Edit
+                </button>           
+        
                 <button class="btn btn-success btn-sm mr-2 d-flex align-items-center" type="button">
                     <svg viewBox="0 0 512 512" class="icon mr-2">
                         <use xlink:href="#saveDisk"></use>
                     </svg> Save
                 </button>
-                <button class="btn btn-danger btn-sm d-flex align-items-center" type="button" (click)="dialougeToggle()"> 
+                <button class="btn btn-danger btn-sm d-flex align-items-center mr-2" type="button"> 
+                    <svg viewBox="0 0 753.23 753.23" class="icon mr-2">
+                        <use xlink:href="#bin"></use>
+                    </svg> Delete
+                </button>
+                <button class="btn btn-danger btn-sm d-flex align-items-center" type="button" (click)="addRolesScreenToggle()"> 
                     <svg viewBox="0 0 489 489" class="icon mr-2">
                         <use xlink:href="#cancel"></use>
                     </svg> Cancel
